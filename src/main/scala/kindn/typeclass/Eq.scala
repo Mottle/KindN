@@ -7,5 +7,5 @@ trait Eq[T] {
 }
 
 object Eq {
-	def apply[T](implicit instance: Eq[T]): Eq[T] = instance
+	@inline def apply[T](implicit instance: Eq[T]): Eq[T] = instance
 }

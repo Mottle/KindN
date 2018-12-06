@@ -6,7 +6,7 @@ import kindn.typeclass.Show
 import kindn.instance.Int._
 
 class ShowTest extends FlatSpec{
-	"A Int value" should "\"toString\" itself" in {
+	"A Int value" should "display itself" in {
 		val a = 1
 		assert(Show[Int].show(a) == "1")
 

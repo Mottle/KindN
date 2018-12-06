@@ -2,7 +2,6 @@ package kindn.instance
 
 package object Maybe {
 	import kindn.entity.Maybe._
-
 	import kindn.typeclass.Show
 
 	implicit val showInstance: Show[Maybe[_]] = {

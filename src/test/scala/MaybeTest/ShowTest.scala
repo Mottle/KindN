@@ -7,7 +7,7 @@ import kindn.entity.Maybe._
 import kindn.typeclass.Show
 
 class ShowTest extends FlatSpec {
-	"An Maybe Int value" should "show it's value with type" in {
+	"An Maybe Int value" should "display itself" in {
 		val m1 = Just(1)
 		val m2 = Nothing()
 
