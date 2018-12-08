@@ -20,4 +20,13 @@ package object Maybe {
 
 		override def ueq(a: Maybe[_], b: Maybe[_]): Boolean = !this.eq(a, b)
 	}
+
+	import kindn.typeclass.Functor
+
+	implicit val FunctorInstance: Functor[Maybe] = new Functor[Maybe] {
+		override def map[A, B](fa: Maybe[A])(f: A => B): Maybe[B] = fa match {
+			case Nothing() => Nothing()
+			case Just(value) => Just(f(value))
+		}
+	}
 }
