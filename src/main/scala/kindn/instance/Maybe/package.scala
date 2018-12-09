@@ -1,5 +1,7 @@
 package kindn.instance
 
+import kindn.typeclass.Applicative
+
 package object Maybe {
 	import kindn.entity.Maybe._
 	import kindn.typeclass.Show
@@ -28,5 +30,20 @@ package object Maybe {
 			case Nothing() => Nothing()
 			case Just(value) => Just(f(value))
 		}
+	}
+
+	implicit val ApplicativeInstance: Applicative[Maybe] = new Applicative[Maybe] {
+		override def pure[A](a: A): Maybe[A] = if(a != null) Just(a) else Nothing()
+
+		override def ap[A, B](fa: Maybe[A])(f: Maybe[A => B]): Maybe[B] = fa match {
+			case Nothing() => Nothing()
+			case Just(value) => f match {
+				case Nothing() => Nothing()
+				case Just(fn) => pure(fn(value))
+			}
+		}
+
+
+		override def map[A, B](fa: Maybe[A])(f: A => B): Maybe[B] = FunctorInstance.map(fa)(f)
 	}
 }
