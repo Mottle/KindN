@@ -6,6 +6,12 @@ import kindn.instance.List._
 
 class ApplicativeTest extends FlatSpec{
 	"List Applicative Test 1" should "be passed" in {
+		val list = 1 :: Nil
+		val list1 = Applicative[List].pure(1)
+		assert(list == list1)
+	}
+
+	"List Applicative Test 2" should "be passed" in {
 		val f1: Int => Int = 1 + _
 		val f2: Int => Int = 2 * _
 		val fs = f1 :: f2 :: Nil
