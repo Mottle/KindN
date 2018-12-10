@@ -18,4 +18,14 @@ package object List {
 
 		override def ueq(a: List[_], b: List[_]): Boolean = a != b
 	}
+
+	import kindn.typeclass.Applicative
+
+	implicit val applicativeInstance: Applicative[List] = new Applicative[List] {
+		override def pure[A](a: A): List[A] = a :: Nil
+
+		override def ap[A, B](fa: List[A])(f: List[A => B]): List[B] = f.flatMap(_f => fa.map(_f))
+
+		override def map[A, B](fa: List[A])(f: A => B): List[B] = functorInstance.map(fa)(f)
+	}
 }
