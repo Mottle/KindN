@@ -46,4 +46,19 @@ package object Maybe {
 
 		override def map[A, B](fa: Maybe[A])(f: A => B): Maybe[B] = FunctorInstance.map(fa)(f)
 	}
+
+	import kindn.typeclass.Monad
+
+	implicit val MonadInstance: Monad[Maybe] = new Monad[Maybe] {
+		override def flatMap[A, B](fa: Maybe[A])(f: A => Maybe[B]): Maybe[B] = fa match {
+			case Just(value) => f(value)
+			case Nothing() => Nothing()
+		}
+
+		override def pure[A](a: A): Maybe[A] = ApplicativeInstance.pure(a)
+
+		override def ap[A, B](fa: Maybe[A])(f: Maybe[A => B]): Maybe[B] = ApplicativeInstance.ap(fa)(f)
+
+		override def map[A, B](fa: Maybe[A])(f: A => B): Maybe[B] = FunctorInstance.map(fa)(f)
+	}
 }

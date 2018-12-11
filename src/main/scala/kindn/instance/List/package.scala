@@ -28,4 +28,16 @@ package object List {
 
 		override def map[A, B](fa: List[A])(f: A => B): List[B] = functorInstance.map(fa)(f)
 	}
+
+	import kindn.typeclass.Monad
+
+	implicit val monadInstance: Monad[List] = new Monad[List] {
+		override def flatMap[A, B](fa: List[A])(f: A => List[B]): List[B] = fa.flatMap(f(_))
+
+		override def pure[A](a: A): List[A] = applicativeInstance.pure(a)
+
+		override def ap[A, B](fa: List[A])(f: List[A => B]): List[B] = applicativeInstance.ap(fa)(f)
+
+		override def map[A, B](fa: List[A])(f: A => B): List[B] = functorInstance.map(fa)(f)
+	}
 }
