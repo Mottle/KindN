@@ -6,5 +6,5 @@ trait Applicative[F[_]] extends Functor[F] {
 }
 
 object Applicative {
-	def apply[F[_]](implicit instance :Applicative[F]): Applicative[F] = instance
+	def apply[F[_]](implicit instance: Applicative[F]): Applicative[F] = instance
 }
