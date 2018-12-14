@@ -36,4 +36,12 @@ class OrdTest extends FlatSpec {
 		assert(Ord[Int].moreOrEqThan(bInt, sInt))
 		assert(Ord[Int].moreOrEqThan(sInt, sameInt))
 	}
+
+	"Int Ord syntax test 1" should "be passed" in {
+		val x = 1
+		val y = 2
+		import kindn.syntax.Ord.OrdOps
+		assert(OrdOps(1) < 2)
+		assert(OrdOps(1) <= 2)
+	}
 }

@@ -13,4 +13,10 @@ class ShowTest extends FlatSpec{
 		val b = 123
 		assert(Show[Int].show(b) == "123")
 	}
+
+	"Int Show syntax test 1" should "be passed" in {
+		val x = 1
+		import kindn.syntax.Show._
+		assert(1.show == "1")
+	}
 }

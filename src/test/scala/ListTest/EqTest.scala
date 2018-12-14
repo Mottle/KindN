@@ -18,5 +18,4 @@ class EqTest extends FlatSpec {
 
 		assert(Eq[List[_]].ueq(list1, list2))
 	}
-
 }

@@ -17,4 +17,22 @@ class EqTest extends FlatSpec {
 		val b = 2
 		assert(!Eq[Int].eq(a, b))
 	}
+
+	"Eq syntax test 1" should "be passed" in {
+		val x = 1
+		val y = 2
+
+		import kindn.syntax.Eq._
+
+		assert(!(1 <=> 2))
+	}
+
+	"Int Eq syntax test 2" should "be passed" in {
+		val x = 1
+		val y = 2
+
+		import kindn.syntax.Eq._
+
+		assert(1 =!= 2)
+	}
 }
